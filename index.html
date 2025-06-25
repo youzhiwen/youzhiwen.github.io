@@ -3,80 +3,360 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Knowing God App</title>
+  <title>Knowing Apps - Faith & Wellness</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: #f4f4f4;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
       color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
     header {
-      background-color: #002855;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       color: white;
-      padding: 2rem 1rem;
+      padding: 2rem 0;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #fff, #e0e7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
     }
 
     main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 4rem 0;
     }
 
-    h1 {
+    .apps-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .app-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #002855, #0066cc);
+    }
+
+    .app-card.knowing-body::before {
+      background: linear-gradient(90deg, #059669, #10b981);
+    }
+
+    .app-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .app-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      font-weight: bold;
+    }
+
+    .knowing-god .app-icon {
+      background: linear-gradient(135deg, #002855, #0066cc);
+    }
+
+    .knowing-body .app-icon {
+      background: linear-gradient(135deg, #059669, #10b981);
+    }
+
+    .app-title {
       font-size: 2rem;
-      margin-bottom: 0.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
     }
 
-    p {
-      line-height: 1.6;
+    .app-description {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .download-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 12px 24px;
+      background: #000;
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .download-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+
+    .info-section {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+
+    .info-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .info-text {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto 2rem;
     }
 
     footer {
       text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      padding: 2rem 0;
       font-size: 0.9rem;
-      color: #777;
-      margin-top: 3rem;
-      padding-bottom: 1rem;
     }
 
-    a {
-      color: #0066cc;
-      text-decoration: none;
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .apps-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .app-card {
+        padding: 2rem;
+      }
+      
+      .download-buttons {
+        flex-direction: column;
+      }
     }
 
-    a:hover {
-      text-decoration: underline;
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-circle:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-circle:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    .floating-circle:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
     }
   </style>
 </head>
 <body>
+  <div class="floating-elements">
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+  </div>
+
   <header>
-    <h1>Knowing God</h1>
-    <p>Explore the Christian faith through our mobile app</p>
+    <div class="container">
+      <h1 class="hero-title">Knowing Apps</h1>
+      <p class="hero-subtitle">Faith & Wellness Applications</p>
+      <p class="hero-description">Discover our mobile apps designed to nurture your spiritual and physical well-being</p>
+    </div>
   </header>
 
   <main>
-    <h2>Welcome to the Knowing God App</h2>
-    <p>
-      This website is used to verify the <code>app-ads.txt</code> file for ad transparency in our mobile app.  
-    </p>
-    <p>
-      Knowing God is a faith-based educational app designed to help users grow in their understanding of the Christian faith, through biblical teachings, creeds, and confessions.
-    </p>
-    <p>
-      For more information, please contact us or download the app from the <a href="https://apps.apple.com" target="_blank">App Store</a> or <a href="https://play.google.com" target="_blank">Google Play</a>.
-    </p>
+    <div class="container">
+      <section class="apps-section">
+        <div class="app-card knowing-god">
+          <div class="app-icon">🙏</div>
+          <h2 class="app-title">Knowing God</h2>
+          <p class="app-description">
+            Deepen your Christian faith through biblical teachings, creeds, and confessions. 
+            A comprehensive spiritual guide designed to help you grow in your understanding 
+            of God's word and strengthen your relationship with Christ.
+          </p>
+          <div class="download-buttons">
+            <a href="https://apps.apple.com/nz/app/knowing-god/id6478806450" target="_blank" class="download-btn">
+              📱 App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.knowinggod&pcampaignid=web_share" target="_blank" class="download-btn">
+              🤖 Google Play
+            </a>
+          </div>
+        </div>
+
+        <div class="app-card knowing-body">
+          <div class="app-icon">💪</div>
+          <h2 class="app-title">Knowing Body</h2>
+          <p class="app-description">
+            Take care of your physical temple with guided wellness practices, health insights, 
+            and holistic approaches to body stewardship. Discover the connection between 
+            physical health and spiritual well-being.
+          </p>
+          <div class="download-buttons">
+            <a href="https://apps.apple.com" target="_blank" class="download-btn">
+              📱 App Store
+            </a>
+            <a href="https://play.google.com" target="_blank" class="download-btn">
+              🤖 Google Play
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <h2 class="info-title">About Our Apps</h2>
+        <p class="info-text">
+          Our applications are designed with care and purpose, focusing on the holistic development 
+          of both spiritual and physical well-being. We believe in nurturing the complete person - 
+          mind, body, and spirit - through thoughtfully crafted digital experiences.
+        </p>
+        <p class="info-text">
+          This website serves to verify the <code>app-ads.txt</code> file for ad transparency 
+          across our mobile applications, ensuring ethical and transparent advertising practices.
+        </p>
+      </section>
+    </div>
   </main>
 
   <footer>
-    &copy; 2025 Knowing God. All rights reserved.
+    <div class="container">
+      <p>&copy; 2025 Knowing Apps. All rights reserved. | Nurturing Faith & Wellness</p>
+    </div>
   </footer>
 </body>
 </html>
